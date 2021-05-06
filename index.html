@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - BBA Final Project</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bigfishtv-turret/5.2.1/turretcss.min.css'>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="all.js" type="text/javascript"></script>
+</head>
+<body>
+
+	<!-- page 1 -->
+	<div class="container" id="page1">
+		<div class="row text-center">
+			<div class="col">
+				<h1>What's our friend's name?</h1>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col">
+				<input type="text" class="form-control" id="name" placeholder="Enter a name (e.g. John)">
+			</div>
+			<div class="col-2">
+				<button type="button" class="btn btn-primary" onclick="page1submit()">
+					Submit
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- page 2 -->
+	<div class="container d-none" id="page2">
+		<div class="row text-center" >
+			<div class="col" id="page2title"></div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="page2morning"></div>
+			<div class="col-2 text-left">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#actionadder" onclick="settime(1)">
+					＋
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="time1"></div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="page2noon"></div>
+			<div class="col-2 text-left">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#actionadder" onclick="settime(2)">
+					＋
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="time2"></div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="page2after"></div>
+			<div class="col-2 text-left">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#actionadder" onclick="settime(3)">
+					＋
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="time3"></div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="page2night"></div>
+			<div class="col-2 text-left">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#actionadder" onclick="settime(4)">
+					＋
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-left" id="time4"></div>
+		</div>
+		<div class="row">
+			<div class="col text-right">
+				<button type="button" class="btn btn-primary" onclick="resetpage2()">Reset All</button>
+			</div>
+			<div class="col text-left">
+				<button type="button" class="btn btn-primary" onclick="page2submit()">Submit</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- action adder modal -->
+	<div class="modal fade" id="actionadder" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Please select an activity or activities</h5>
+				</div>
+				<div class="modal-body">
+					<select class="form-control" id="actioninput" onchange="updateselect()">
+						<option value="1">Daily routine</option>
+						<option value="2">Entertainment</option>
+						<option value="3">Exercise</option>
+						<option value="4">Learning</option>
+					</select>
+					<select class="form-control" id="actioninput2">
+						<option value="1">Breakfast</option>
+						<option value="2">Lunch</option>
+						<option value="3">Dinner</option>
+						<option value="4">Shower</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addaction()">Add</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- page 3 -->
+	<div class="container d-none" id="page3">
+		<div class="row">
+			<div class="col text-center">
+				<h1>Does this look right?</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table text-center">
+				<thead class="thead-light">
+					<tr>
+						<th>ACTIVITIES</th>
+					</tr>
+				</thead>
+				<tbody id="actionsdisplay">
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col text-right">
+				<button type="button" class="btn btn-secondary" onclick="back2page2()">No</button>
+			</div>
+			<div class="col text-left">
+				<button type="button" class="btn btn-success" onclick="page3submit()">Yes</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- page 4 -->
+	<div class="container d-none" id="page4">
+		<div class="row">
+			<div class="col text-center">
+				<h1>Time & Location for:</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table text-center">
+				<thead class="thead-light">
+					<tr>
+						<th>ACTIVITIES</th>
+						<th>LOCATION</th>
+						<th>TIME (min)</th>
+					</tr>
+				</thead>
+				<tbody id="timelocation">
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<h1>Transition Time (min)</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 text-right">
+				Home ← → Gym
+			</div>
+			<div class="col-4">
+				<input type="text" class="form-control" id="ttt0" placeholder="Enter a number (integer)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 text-right">
+				Home ← → School
+			</div>
+			<div class="col-4">
+				<input type="text" class="form-control" id="ttt1" placeholder="Enter a number (integer)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 text-right">
+				Home ← → Friend's place
+			</div>
+			<div class="col-4">
+				<input type="text" class="form-control" id="ttt2" placeholder="Enter a number (integer)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 text-right">
+				Gym ← → School
+			</div>
+			<div class="col-4">
+				<input type="text" class="form-control" id="ttt3" placeholder="Enter a number (integer)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 text-right">
+				Gym ← → Friend's place
+			</div>
+			<div class="col-4">
+				<input type="text" class="form-control" id="ttt4" placeholder="Enter a number (integer)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-4 text-right">
+				School ← → Friend's place
+			</div>
+			<div class="col-4">
+				<input type="text" class="form-control" id="ttt5" placeholder="Enter a number (integer)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<button type="button" class="btn btn-primary" onclick="page4submit()">Submit</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- page 5 -->
+	<div class="container d-none" id="page5">
+		<div class="row">
+			<div class="col text-center" id="page5title"></div>
+		</div>
+		<div class="row">
+			<table class="table text-center">
+				<thead class="thead-light">
+					<tr>
+						<th style="width: 5%">#</th>
+						<th>ACTIVITIES INFO</th>
+						<th style="width: 5%"></th>
+						<th style="width: 5%"></th>
+					</tr>
+				</thead>
+				<tbody id="activityorder">
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<button type="button" class="btn btn-primary" onclick="back2page4()">Back</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-primary" onclick="page5submit()">Submit</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- page 6 -->
+	<div class="container d-none" id="page6">
+		<div class="row">
+			<div class="col text-center" id="page6title"></div>
+		</div>
+		<div class="row">
+			<table class="table text-center">
+				<thead class="thead-light">
+					<tr>
+						<th>ACTION</th>
+						<th style="width: 5%"></th>
+						<th>LOCATION</th>
+						<th style="width: 5%"></th>
+						<th>TIME</th>
+					</tr>
+				</thead>
+				<tbody id="calendar">
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col text-center" id="page6time"></div>
+		</div>
+		<div class="row">
+			<div class="col">
+				WARNING: You can go back to the beginning by clicking the "Restart" button.<br>
+				Or, go back to the time & location & arrangement setting by clicking the "Retry" button.<br>
+				If you want to see the optimal solution, click the "Solution" button.
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<button type="button" class="btn btn-primary" onclick="page6to1()">Restart</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-primary" onclick="page6to4()">Retry</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-primary" onclick="checksolution()">Solution</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- solution page -->
+	<div class="container d-none" id="page7">
+		<div class="row">
+			<div class="col text-center">
+				<h1>This is one of the optimal solutions:</h1>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table text-center">
+				<thead class="thead-light">
+					<tr>
+						<th>ACTION</th>
+						<th style="width: 5%"></th>
+						<th>LOCATION</th>
+						<th style="width: 5%"></th>
+						<th>TIME</th>
+					</tr>
+				</thead>
+				<tbody id="calendaroptimal">
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col text-center" id="page7time"></div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<h5 class="card-header">Conclusion</h5>
+					<div class="card-body">
+						<h5 class="card-title">About the solution</h5>
+						<p class="card-text">The solution is one of the optimal solutions. Can you find other optimal solutions?</p>
+						<h5 class="card-title">I hope you can learn from it:</h5>
+						<p class="card-text">What just happened was a glimpse into Combinatorial Opimization. The daily life scenario you envisioned was so easy to describe yet so difficult to solve (especially if you did more than Netflix everyday :D) Similarly, you might've heard the famous Traveling Salesman Problem.</p>
+						<h5 class="card-title">More questions to you:</h5>
+						<p class="card-text">What if some activities can only be done at a specific time and place?</p>
+						<p class="card-text">What if you don't need to go to the next place directly?</p>
+						<p class="card-text">What if we add the efficiency value to an activity at each place?</p>
+						<p class="card-text">...</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<button type="button" class="btn btn-secondary" onclick="page7to6()">Back</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
