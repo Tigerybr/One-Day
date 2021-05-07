@@ -12,4 +12,7 @@ Encouraging an understanding of **mathematical optimization** through planning a
 HTML & JavaScript. Algorithmic deign based on computing concepts (e.g graph, matrix, TSP, and etc.) 
 
 ### Demo
-Clicek [here](https://www.youtube.com/watch?v=UBo5AEQIumc) for demo video
+Click [here](https://www.youtube.com/watch?v=UBo5AEQIumc) for the demo video.
+
+### Link to the Presentation
+Click [here](https://docs.google.com/presentation/d/16H1XWRmeycZNkpScOS1-kZBcQvy5MuPefxFTesgFh0I/edit?usp=sharing) for Google Slides.
